@@ -12,6 +12,7 @@
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
+    "@100xdevs/medium-common": "^1.0.0",
     "@rudraprasaaad/medium-app": "^1.0.0",
     "@rudraprasaaad/medium-common": "^1.0.1",
     "axios": "^1.7.9",
@@ -38,5 +39,4 @@
     "vite": "^6.0.3"
   },
   "homepage": "https://rudraprasaaad.github.io/medium-app"
-
 }

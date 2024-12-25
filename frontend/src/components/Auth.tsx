@@ -7,16 +7,20 @@ import { BACKEND_URL } from "../config";
 export const Auth = ({type} : {type : "signup" | "signin"}) => {
 	const navigate = useNavigate();
 	const [postInputs, setPostInputs] = useState<SignupInput>({
-		email : "",
-		password : "",	
-		name : ""
+		username: "",
+		password: "",	
+		name: ""
 	}) 
 
 
 
 	async function sendRequest(){
 		try{
-			const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, postInputs);
+			const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`, {
+				email : postInputs.username,
+				password : postInputs.password,
+				name : postInputs.name
+			});
 			const { token , name } = response.data;
 			localStorage.setItem("token", token);
 			localStorage.setItem("name", name);
@@ -54,7 +58,7 @@ export const Auth = ({type} : {type : "signup" | "signin"}) => {
 						<LabelledInput label="Username" placeholder="rudra@mail.com" onChange={(e) => {
 								setPostInputs({
 								...postInputs, 
-								email : e.target.value
+								username: e.target.value
 							})	
 						}}/>
 						<LabelledInput label="Password" type="password" onChange={(e) => {
